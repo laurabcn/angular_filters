@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+    <html ng-app="exampleApp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>AngularJS Demo</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script>
+            var myApp = angular.module("exampleApp", []);
+        </script>
+        <script src="controllers/controller.js"></script>
+    </head>
+    <body>
+        <div class="panel" ng-controller="dayCtrl as dayC">
+            <div class="page-header">
+                <h3>AngularJS App</h3>
+            </div>
+            <h4 highlight="Sunday">Today is {{ dayC.day || "(unknown)" | dayName}}</h4>
+            <h4 ng-controller="tomorrowCtrl as tmrrwCtrl">Tomorrow is {{ tmrrwCtrl.tomorrow || "(unknown)" | dayName}}</h4>
+        </div>
+
+    </body>
+
+</html>
