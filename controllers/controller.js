@@ -1,32 +1,13 @@
-myApp.controller("dayCtrl", function($scope){
-    var self = this,
-        dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+angular.module("exampleApp.Controllers", [])
+.controller("dayCtrl", function($scope, days){
+    var self = this;
 
-    self.day = dayNames[new Date().getDay()];
-});
+    self.day = days.today;
+})
+.controller("tomorrowCtrl", function($scope, days){
+    var self = this;
 
-myApp.controller("tomorrowCtrl", function($scope){
-    var self = this,
-        dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    self.tomorrow = dayNames[(new Date().getDay() + 1) % 7];
+    self.day = days.tomorrow;
 
 });
 
-myApp.directive("highlight", function($filter){
-    var dayFilter = $filter("dayName");
-    return function(scope, element, attrs){
-        if(dayFilter(scope.dayC.day) == attrs["highlight"]){
-            element.css("color", "red");
-        }
-    }
-});
-
-myApp.filter("dayName", function(){
-    var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    return function (input) {
-        return angular.isNumber(input) ? dayNames[input] : input;
-    }
-
-});
